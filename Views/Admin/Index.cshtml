@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BlogEngine.Models.BlogPost>
+
+<h2>Admin Panel - Manage Blog Posts</h2>
+<a asp-action="Create" class="btn btn-success">Create New Post</a>
+<a asp-action="ManageComments" class="btn btn-primary">Manage Comments</a> <!-- New Button -->
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Published</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@post.Title</td>
+                <td>@(post.IsPublished ? "Yes" : "No")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@post.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@post.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

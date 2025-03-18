@@ -1,0 +1,43 @@
+﻿@model BlogEngine.Models.BlogPost
+
+<h2>@Model.Title</h2>
+<p class="text-muted">Published on @Model.CreatedAt.ToString("MMM dd, yyyy")</p>
+<p>@Model.Content</p>
+
+<hr>
+
+<h3>Comments</h3>
+@if (Model.Comments.Any())
+{
+    <ul class="list-group">
+        <h3>Comments</h3>
+        @foreach (var comment in Model.Comments.Where(c => c.IsApproved))
+        {
+            <div class="comment-box">
+                <strong>@comment.Author</strong>
+                <p>@comment.Text</p>
+                <small>@comment.CreatedAt.ToString("yyyy-MM-dd HH:mm")</small>
+            </div>
+        }
+    </ul>
+}
+else
+{
+    <p>No comments yet.</p>
+}
+
+<hr>
+
+<h3>Add a Comment</h3>
+<form asp-controller="Blog" asp-action="AddComment" method="post">
+    <input type="hidden" name="postId" value="@Model.Id" />
+    <div class="mb-3">
+        <label>Name:</label>
+        <input type="text" name="Author" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label>Comment:</label>
+        <textarea name="Text" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Post Comment</button>
+</form>

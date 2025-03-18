@@ -1,0 +1,18 @@
+﻿@model BlogEngine.Models.BlogPost
+
+<h2>Create Blog Post</h2>
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label>Title:</label>
+        <input type="text" name="Title" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label>Content:</label>
+        <textarea name="Content" class="form-control" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Publish:</label>
+        <input type="checkbox" name="IsPublished" />
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+</form>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BlogEngine.Models.Comment>
+
+<h2>Manage Comments</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Comment</th>
+            <th>Approved</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var comment in Model)
+        {
+            <tr>
+                <td>@comment.Author</td>
+                <td>@comment.BlogPost.Title</td>
+                <td>@comment.Text</td>
+                <td>@(comment.IsApproved ? "Yes" : "No")</td>
+                <td>
+                    <form asp-action="ToggleApproval" method="post">
+                        <input type="hidden" name="id" value="@comment.Id" />
+                        <button type="submit" class="btn @(comment.IsApproved ? "btn-warning" : "btn-success")">
+                            @(comment.IsApproved ? "Unapprove" : "Approve")
+                        </button>
+                    </form>
+
+                    <form asp-action="DeleteComment" method="post">
+                        <input type="hidden" name="id" value="@comment.Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
