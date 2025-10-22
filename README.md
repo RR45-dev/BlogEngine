@@ -4,7 +4,7 @@ Certainly! Below is an organized and professional GitHub README structure that c
 
 # Blog Engine
 
-## Overview
+# Overview
 
 **Blog Engine** is a simple yet powerful web application that allows users to create and manage blog posts, view individual posts along with comments, and interact with the content. The admin panel enables easy management of blog posts and user comments. The project is built with **ASP.NET Core MVC**, **Entity Framework Core**, and **SQLite** for database management.
 
